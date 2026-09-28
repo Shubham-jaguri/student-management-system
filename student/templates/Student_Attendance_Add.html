@@ -1,0 +1,72 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="static/css/studentAdd.css">
+
+   
+
+<script src="static/JS/bootstrap.bundle.min.js"></script>
+     <title>Document</title>
+</head>
+<body> 
+    
+
+        <h2 class="h2">STUDENT ATTENDANCE ADD</h2>
+      <form action="" method="POST">
+         {% csrf_token %}
+ <div>
+    <label >Roll no</label>
+    <input type="text" name="roll" required>
+
+ </div>
+
+  <div>
+    <label >Name </label>
+    <input type="text" name="name" required>
+ </div>
+
+ <div>
+    <label >Date  </label>
+    <input type="date" name="date" required>
+ </div>
+
+ <div>
+    <label >Course </label>
+     <select name="course"  required>
+    <option >BA</option>
+    <option >B.Sc</option>
+    <option >BCA</option>
+    <option >BBA</option>
+    <option >B.Com</option>
+</select>
+ </div>
+
+ <div>
+    <label >Attendance </label>
+    <input type="text" name="address" required>
+ </div>
+
+ 
+
+ <Button type="Submit" class="button">Submit</Button>
+
+  <script>
+ {% for message in messages %}
+alert("{{message}}")
+ {% endfor %}
+</script> 
+
+    </form>
+
+    
+
+ 
+<script src="static/JS/bootstrap.min.js">
+   
+</script> 
+</body>
+</html> 

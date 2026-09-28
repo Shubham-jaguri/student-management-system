@@ -1,0 +1,65 @@
+
+{% extends "navbar.html" %}
+
+ {% block body %}
+
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/student_record.css">
+
+    <div class="main">
+        
+           
+                <h1>Sutdent Attendance Records</h1>
+
+            <div class="for">
+                 <form method="get"> 
+                    {% csrf_token %} 
+               <input type="text" name="search" placeholder="Enter Your Name & ID" class="rong">
+               <input type="submit" name="submit" value="search" class="nub">
+               <button class="b1"><a href="/SAttendanceRecords">clear</a></button>
+           </form>
+           </div>
+           
+
+       <div class="con">
+       <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" > Roll No</th>
+      <th scope="col">Name</th>
+      <th scope="col" >Date</th>
+      <th scope="col" >Course</th>
+      <th scope="col">Attendance</th>
+     
+      
+      <th scope="col"> Edit </th>
+      <th scope="col" >Delete </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in allposts %}
+    
+   
+   <tr>
+                <td>{{post.Roll_no}}</td>
+                <td>{{post.student_name}}</td>
+                <td>{{post.date}}</td>
+                <td>{{post.course }}</td>
+                <td>{{post.attendance }}</td> 
+                {% comment %} <td><button class="btn btn-info" id="Update" ><a href=" update/{{post.User_id}} ">Update </a></button></td> {% endcomment %}
+                <td><button class="btn btn-danger"  id="del"><a href="Attendance_Add" >Edit</a></button></td>
+                <td><button class="btn btn-danger"  id="del"><a href="del/{{post.Roll_no}}" >Delete </a></button></td>
+    </tr>
+    {%empty%}
+
+    <span class="text-center text-danger">No Record Found</span>
+     {% endfor %}
+
+    
+  </tbody>
+</table>
+       </div>
+        </div>
+        
+        {% endblock body %}
+

@@ -1,0 +1,82 @@
+
+ {% extends "navbar.html" %}
+
+ {% block body %}
+
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/student_record.css">
+
+    <div class="main">
+        
+           
+                <h1>Sutdent Records</h1>
+
+            <div class="for">
+                 <form method="get"> 
+                    {% csrf_token %} 
+               <input type="text" name="search"placeholder="Enter Your Name & ID" class="rong">
+               <input type="submit" name="submit" value="search" class="nub">
+               <button class="b1"><a href="/SRecords">clear</a></button>
+           </form>
+           </div>
+           
+
+       <div class="con">
+       <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" > Roll No</th>
+      <th scope="col">Name</th>
+      <th scope="col" >Email</th>
+      <th scope="col" >Phone Number</th>
+      <th scope="col">Gender</th>
+      <th scope="col" >Date of Birth</th>
+      <th scope="col" >Course</th>
+      <th scope="col" >Address</th>
+      <th scope="col" >Edit </th>
+      
+      {% comment %} <th scope="col">Update </th> {% endcomment %}
+      <th scope="col" >Delete </th>
+    </tr>
+  </thead>
+  <tbody>
+
+   
+    
+   
+    
+    
+    {% for post in allposts %}
+    
+   
+   <tr>
+                <td>{{post.roll_no}}</td>
+                <td>{{post.name}}</td>
+                <td>{{post.email}}</td>
+                <td>{{post.phone }}</td>
+                <td>{{post.gender }}</td>
+                <td>{{post.birth }}</td>
+                <td>{{post.course}}</td>
+                <td>{{post.address}}</td>
+                
+
+                
+                {% comment %} <td><button class="btn btn-info" id="Update" ><a href=" update/{{post.User_id}} ">Update </a></button></td> {% endcomment %}
+                <td><button class="btn btn-danger"  ><a href="studentadd" >Edit</a></button></td>
+                <td><button class="btn btn-danger"  id="dele"><a href="dele/{{post.roll_no}}" >Delete </a></button></td>
+    </tr>
+    {%empty%}
+
+    <span class="text-center text-danger">No Record Found</span>
+     {% endfor %}
+
+    
+  </tbody>
+</table>
+       </div>
+        </div>
+       
+        
+        {% endblock body %}
+{% comment %} </body>
+</html> {% endcomment %}

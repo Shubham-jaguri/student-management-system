@@ -1,0 +1,73 @@
+
+{% extends "navbar.html" %}
+
+    {% block title %}
+    
+    {% endblock title %}
+
+ {% block body %}
+
+  <link rel="stylesheet" href="static/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/student_record.css">
+
+    <div class="main">
+                <h1>Sutdent Course Records</h1>
+
+            <div class="for">
+                 <form method="get"> 
+                    {% csrf_token %} 
+               <input type="text" name="search" value="{{q}}" placeholder="Course Name & Roll No" class="rong">
+               <input type="submit" name="submit" value="search" class="nub">
+               <button class="b1"><a href="/SCourseRecords">clear</a></button>
+           </form>
+           </div>
+
+       <div class="con">
+       <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" > Roll No</th>
+      <th scope="col">Name</th>
+      <th scope="col" >Student Id</th>
+      <th scope="col" >Course Name</th>
+      <th scope="col">Course Code</th>
+      <th scope="col" >Department</th>
+      <th scope="col" >Duration</th>
+      <th scope="col" >Semster</th>
+      <th scope="col" >Instructor</th>
+      <th scope="col" >Fees</th>
+
+
+      <th scope="col">Edit </th>
+    
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for row in data%}
+   <tr>
+                <td>{{row.student.roll_no}}</td>
+                <td>{{row.student.name}}</td>
+                <td>{{row.course.course_id}}</td>
+                <td>{{row.course.course_name}}</td>
+                <td>{{row.course.course_code}}</td>
+                <td>{{row.course.department}}</td>
+                <td>{{row.course.duration}}</td>
+                <td>{{row.course.semester}}</td>
+                <td>{{row.course.Instructor}}</td>
+                <td>{{row.course.fees}}</td>                 
+                {% comment %} <td><button class="btn btn-info" id="Update" ><a href=" update/{{post.User_id}} ">Update </a></button></td> {% endcomment %}
+                <td><button class="btn btn-danger"  ><a href="course_add" >Edit</a></button></td>
+                
+    </tr>
+    {%empty%}
+
+    <span class="text-center text-danger">No Record Found</span>
+     {% endfor %}    
+  </tbody>
+</table>
+       </div>
+        </div> 
+        {% endblock body %}
+{% comment %} </body>
+</html> {% endcomment %}
